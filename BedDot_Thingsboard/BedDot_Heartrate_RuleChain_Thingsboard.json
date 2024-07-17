@@ -1,0 +1,161 @@
+{
+  "ruleChain": {
+    "name": "Test BedDot API Rule Chain",
+    "type": "CORE",
+    "firstRuleNodeId": null,
+    "root": false,
+    "debugMode": false,
+    "configuration": null,
+    "additionalInfo": {
+      "description": ""
+    }
+  },
+  "metadata": {
+    "firstNodeIndex": null,
+    "nodes": [
+      {
+        "type": "org.thingsboard.rule.engine.metadata.TbGetAttributesNode",
+        "name": "DataTest",
+        "debugMode": true,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 1,
+        "configuration": {
+          "tellFailureIfAbsent": false,
+          "fetchTo": "DATA",
+          "clientAttributeNames": [],
+          "sharedAttributeNames": [],
+          "serverAttributeNames": [
+            "mac",
+            "vital_name",
+            "timestamp"
+          ],
+          "latestTsKeyNames": [],
+          "getLatestValueWithTs": false
+        },
+        "additionalInfo": {
+          "description": null,
+          "layoutX": 255,
+          "layoutY": 316
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Fetch Data",
+        "debugMode": true,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 0,
+        "configuration": {
+          "scriptLang": "JS",
+          "jsScript": "var newMsg = {\n    \"curr_heartrate\": msg.result[0][0]\n};\n\n\nreturn {msg: newMsg, metadata: metadata, msgType: msgType};",
+          "tbelScript": null
+        },
+        "additionalInfo": {
+          "description": null,
+          "layoutX": 647,
+          "layoutY": 323
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode",
+        "name": "Save Timeseries",
+        "debugMode": true,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 0,
+        "configuration": {
+          "defaultTTL": 0
+        },
+        "additionalInfo": {
+          "layoutX": 805,
+          "layoutY": 224
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Generate requests",
+        "debugMode": false,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 1,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 15,
+          "scriptLang": "JS",
+          "jsScript": "var msg = {\n    \"mac\": \"30:30:f9:72:3b:b0\",\n    \"vital_name\": \"heartrate\",\n};\n\nreturn {\n    msg: msg,\n    metadata: {},\n    msgType: \"POST_TELEMETRY_REQUEST\"\n};",
+          "tbelScript": null,
+          "originatorId": "017350f0-416d-11ef-91aa-4b5b857befbc",
+          "originatorType": "ASSET"
+        },
+        "additionalInfo": {
+          "description": null,
+          "layoutX": 48,
+          "layoutY": 215
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.rest.TbRestApiCallNode",
+        "name": "Get Test Data",
+        "debugMode": false,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 1,
+        "configuration": {
+          "restEndpointUrlPattern": "https://homedots.us:3425/readVital",
+          "requestMethod": "POST",
+          "useSimpleClientHttpFactory": false,
+          "parseToPlainText": false,
+          "ignoreRequestBody": false,
+          "enableProxy": false,
+          "useSystemProxyProperties": false,
+          "proxyScheme": null,
+          "proxyHost": null,
+          "proxyPort": 0,
+          "proxyUser": null,
+          "proxyPassword": null,
+          "readTimeoutMs": 0,
+          "maxParallelRequestsCount": 0,
+          "headers": {
+            "Content-Type": "application/json",
+            "Authorization": "12345678"
+          },
+          "useRedisQueueForMsgPersistence": false,
+          "trimQueue": null,
+          "maxQueueSize": null,
+          "credentials": {
+            "type": "anonymous"
+          }
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 433,
+          "layoutY": 219
+        }
+      }
+    ],
+    "connections": [
+      {
+        "fromIndex": 0,
+        "toIndex": 4,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 1,
+        "toIndex": 2,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 3,
+        "toIndex": 0,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 4,
+        "toIndex": 1,
+        "type": "Success"
+      }
+    ],
+    "ruleChainConnections": null
+  }
+}
