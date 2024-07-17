@@ -1,0 +1,189 @@
+{
+  "title": "BedDot Display",
+  "image": null,
+  "mobileHide": false,
+  "mobileOrder": null,
+  "configuration": {
+    "widgets": {
+      "e4b213c6-0920-0790-bac4-a5fc9631d8f0": {
+        "type": "timeseries",
+        "sizeX": 20,
+        "sizeY": 10,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "entityAliasId": "cbe6cac0-1dac-b256-8784-eed66eabbf55",
+              "dataKeys": [
+                {
+                  "name": "curr_heartrate",
+                  "type": "timeseries",
+                  "label": "Heartrate",
+                  "color": "#2196f3",
+                  "settings": {},
+                  "_hash": 0.2764344919601849,
+                  "aggregationType": null,
+                  "units": "bpm",
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                }
+              ],
+              "alarmFilterConfig": {
+                "statusList": [
+                  "ACTIVE"
+                ]
+              },
+              "latestDataKeys": null
+            }
+          ],
+          "timewindow": {
+            "realtime": {
+              "interval": 15000,
+              "timewindowMs": 3600000
+            },
+            "aggregation": {
+              "type": "AVG",
+              "limit": 25000
+            }
+          },
+          "showTitle": true,
+          "backgroundColor": "#fff",
+          "color": "rgba(0, 0, 0, 0.87)",
+          "padding": "8px",
+          "settings": {
+            "shadowSize": 4,
+            "fontColor": "#545454",
+            "fontSize": 10,
+            "xaxis": {
+              "showLabels": true,
+              "color": "#545454"
+            },
+            "yaxis": {
+              "showLabels": true,
+              "color": "#545454"
+            },
+            "grid": {
+              "color": "#545454",
+              "tickColor": "#DDDDDD",
+              "verticalLines": true,
+              "horizontalLines": true,
+              "outlineWidth": 1
+            },
+            "stack": false,
+            "tooltipIndividual": false,
+            "showLegend": true,
+            "legendConfig": {
+              "direction": "column",
+              "position": "bottom",
+              "sortDataKeys": false,
+              "showMin": false,
+              "showMax": false,
+              "showAvg": true,
+              "showTotal": false,
+              "showLatest": false
+            }
+          },
+          "title": "Heartrate Graph (source: BedDot)",
+          "dropShadow": true,
+          "enableFullscreen": true,
+          "titleStyle": {
+            "fontSize": "16px",
+            "fontWeight": 400
+          },
+          "mobileHeight": null,
+          "enableDataExport": true,
+          "widgetStyle": {},
+          "useDashboardTimewindow": false,
+          "actions": {},
+          "displayTimewindow": true,
+          "showTitleIcon": false,
+          "titleTooltip": "",
+          "widgetCss": "",
+          "pageSize": 1024,
+          "noDataDisplayMessage": ""
+        },
+        "id": "e4b213c6-0920-0790-bac4-a5fc9631d8f0",
+        "typeFullFqn": "system.charts.basic_timeseries"
+      }
+    },
+    "states": {
+      "default": {
+        "name": "BedDot Data Dashboard",
+        "root": true,
+        "layouts": {
+          "main": {
+            "widgets": {
+              "e4b213c6-0920-0790-bac4-a5fc9631d8f0": {
+                "sizeX": 41,
+                "sizeY": 15,
+                "mobileHeight": null,
+                "row": 0,
+                "col": 3
+              }
+            },
+            "gridSettings": {
+              "backgroundColor": "#eeeeee",
+              "color": "rgba(0,0,0,0.870588)",
+              "columns": 48,
+              "backgroundSizeMode": "100%",
+              "autoFillHeight": true,
+              "mobileAutoFillHeight": false,
+              "mobileRowHeight": 70,
+              "margin": 7,
+              "outerMargin": true
+            }
+          }
+        }
+      }
+    },
+    "entityAliases": {
+      "6d9aab6b-1420-9ecc-1374-d505fa272913": {
+        "id": "6d9aab6b-1420-9ecc-1374-d505fa272913",
+        "alias": "Buildings",
+        "filter": {
+          "type": "assetType",
+          "resolveMultiple": true,
+          "assetNameFilter": "",
+          "assetTypes": [
+            "building"
+          ]
+        }
+      },
+      "cbe6cac0-1dac-b256-8784-eed66eabbf55": {
+        "id": "cbe6cac0-1dac-b256-8784-eed66eabbf55",
+        "alias": "BedDotTest",
+        "filter": {
+          "type": "assetType",
+          "resolveMultiple": true,
+          "assetTypes": [
+            "BedDotTest"
+          ],
+          "assetNameFilter": ""
+        }
+      }
+    },
+    "timewindow": {
+      "realtime": {
+        "interval": 15000,
+        "timewindowMs": 3600000
+      },
+      "aggregation": {
+        "type": "AVG",
+        "limit": 25000
+      }
+    },
+    "settings": {
+      "stateControllerId": "entity",
+      "showTitle": false,
+      "showDashboardsSelect": true,
+      "showEntitiesSelect": true,
+      "showDashboardTimewindow": true,
+      "showDashboardExport": true,
+      "toolbarAlwaysOpen": true
+    },
+    "filters": {}
+  },
+  "name": "BedDot Display"
+}
